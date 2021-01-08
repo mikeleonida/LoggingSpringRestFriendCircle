@@ -3,6 +3,9 @@ package com.spring.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.model.Employee;
@@ -10,11 +13,15 @@ import com.spring.model.Employee;
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
 
-	List<Employee> allEmployees = new ArrayList<Employee>();
+	List<Employee> allEmployees;// = new ArrayList<Employee>();
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 	
 	@Override
 	public boolean addEmployee(Employee e) {
-		allEmployees.add(e);
+		Session session = sessionFactory.openSession();
+		session.save(e);
 		return true;
 	}
 
