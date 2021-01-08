@@ -1,4 +1,4 @@
-package com.spring.config;
+package com.spring.activitystream.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,6 +15,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { SpringRestConfig.class };
+		return new Class[] { SpringRestConfiguration.class };
 	}
 }

@@ -2,10 +2,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.spring</groupId>
-	<artifactId>SpringRestHibernateIntegration</artifactId>
+	<groupId>com.spring.activitystream</groupId>
+	<artifactId>SpringRestFriendCircle</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring Rest With hibernate Project</name>
+	<name>Spring Rest Friend Circle Project (With hibernate)</name>
 	<properties>
 		<maven.compiler.source>1.15</maven.compiler.source>
 		<maven.compiler.target>1.15</maven.compiler.target>
@@ -79,7 +79,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SpringRestHibernateIntegration</finalName>
+		<finalName>SpringRestFriendCircle</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->
 			<plugins>

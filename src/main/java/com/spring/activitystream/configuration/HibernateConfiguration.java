@@ -1,4 +1,4 @@
-package com.spring.config;
+package com.spring.activitystream.configuration;
 
 import java.util.Properties;
 
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.spring" })
+@ComponentScan({ "com.spring.activitystream" })
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
 	@Autowired
@@ -28,7 +28,7 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.spring.model" });
+		sessionFactory.setPackagesToScan(new String[] { "com.spring.activitystream.model" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
