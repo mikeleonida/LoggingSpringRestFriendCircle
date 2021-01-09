@@ -51,9 +51,9 @@ public class UserCircleDAOImpl implements UserCircleDAO {
 		Transaction tx = session.beginTransaction();
 		
 		List<UserCircle> ucList = session
-				.createQuery("from UserCircle uc where userId=" + userId 
+				.createQuery("from UserCircle u where userId=" + userId 
 				+ " and friendCircleId=" + friendCircleId).list();
-		if (!ucList.isEmpty()) {
+		if (ucList.isEmpty()) {
 			return false;
 		}
 		session.delete(ucList.get(0));
@@ -63,10 +63,10 @@ public class UserCircleDAOImpl implements UserCircleDAO {
 	}
 
 	@Override
-	public FriendCircle getFriendCircle(User user) {
+	public FriendCircle getFriendCircle(int userId) {
 		Session session = sessionFactory.openSession();
 		List<UserCircle> ucList = session
-				.createQuery("from UserCircle uc where userId=" + user.getUserId()).list();
+				.createQuery("from UserCircle uc where userId=" + userId).list();
 		if (ucList.isEmpty()) {
 			return null;
 		}

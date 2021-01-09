@@ -25,8 +25,8 @@ public class UserCircleServiceImpl implements UserCircleService {
 	}
 
 	@Override
-	public FriendCircle getFriendCircle(User user) {
-		return userCircleDAO.getFriendCircle(user);
+	public FriendCircle getFriendCircle(int userId) {
+		return userCircleDAO.getFriendCircle(userId);
 	}
 
 }

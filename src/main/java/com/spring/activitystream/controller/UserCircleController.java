@@ -3,6 +3,7 @@ package com.spring.activitystream.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,16 @@ public class UserCircleController {
 		if(userCircleService.removeFriend(userId, friendCircleId)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
+	@RequestMapping("/friendcircle/{no}")
+	public ResponseEntity<FriendCircle> getCircleByUserId(@PathVariable ("no") int userId) {
+		FriendCircle fc = userCircleService.getFriendCircle(userId);
+		if (fc != null) {
+			return new ResponseEntity<>(fc, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 }
