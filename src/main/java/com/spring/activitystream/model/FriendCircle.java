@@ -17,15 +17,16 @@ public class FriendCircle {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int friendCircleId;
 
+	@Column(nullable = false)
 	private String name;
 	
 //	<many-to-one name="emp" class="onetomanypack.Employee" fetch="select">
 //	<column name="EMPLOYEE_ID" not-null="true" />
 //</many-to-one>
 
-	@OneToMany
-	@Column(name="USER_ID", nullable=false)
-	private List<User> friends;
+//	@OneToMany
+//	@Column(name="USER_ID", nullable=false)
+//	private List<User> friends;
 
 	public FriendCircle() {
 		
@@ -50,22 +51,6 @@ public class FriendCircle {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<User> getFriends() {
-		return friends;
-	}
-
-	public void setFriends(List<User> friends) {
-		this.friends = friends;
-	}
-	
-	public boolean addFriend(User newFriend) {
-		return friends.add(newFriend);
-	}
-	
-	public boolean removeFriend(User friend) {
-		return friends.remove(friend);
 	}
 	
 }

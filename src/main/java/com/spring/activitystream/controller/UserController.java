@@ -21,11 +21,11 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public String welcome() {
-		return "Hello from Spring Rest Friend Circle";
+	public ResponseEntity welcome() {
+		return new ResponseEntity<>("Hello from Spring Rest Friend Circle", HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
+	@RequestMapping(value = "/adduser", method = RequestMethod.PUT)
 	public ResponseEntity addNewUser(@RequestBody User u) {
 		if(userService.addUser(u)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
@@ -54,9 +54,9 @@ public class UserController {
 	@RequestMapping(value = "/update/{no}", method = RequestMethod.POST)
 	public ResponseEntity updateUser(@RequestBody User u, @PathVariable("no") int id) {
 		if(userService.updateUser(id, u)) {
-			return new ResponseEntity(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 }

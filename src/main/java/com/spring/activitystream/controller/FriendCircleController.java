@@ -23,7 +23,7 @@ public class FriendCircleController {
 	@Autowired
 	private FriendCircleService fcService;
 	
-	@RequestMapping(value = "/addfriendcircle", method = RequestMethod.POST)
+	@RequestMapping(value = "/addfriendcircle", method = RequestMethod.PUT)
 	public ResponseEntity addNewUser(@RequestBody FriendCircle f) {
 		if(fcService.addFriendCircle(f)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
@@ -32,20 +32,20 @@ public class FriendCircleController {
 	}
 	
 	@RequestMapping(value="/friendcircles")
-	public ResponseEntity getFriendCirclesByName(@RequestParam ("name") String name) {
+	public ResponseEntity<List<FriendCircle>> getFriendCirclesByName(@RequestParam ("name") String name) {
 		List<FriendCircle> friendCircles = fcService.getFriendCirclesLikeName(name);
 		if (friendCircles == null || friendCircles.isEmpty()) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND); 
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 		}
-		return new ResponseEntity(friendCircles, HttpStatus.OK);
+		return new ResponseEntity<>(friendCircles, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/friends", method = RequestMethod.POST)
-	public ResponseEntity getFriendsInCircle(@RequestBody FriendCircle f) {
+	@RequestMapping(value="/friends", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> getFriendsInCircle(@RequestBody FriendCircle f) {
 		List<User> friends = fcService.getAllFriends(f);
-		if (friends==null || friends.isEmpty()) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND); 
+		if (friends==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 		}
-		return new ResponseEntity(friends, HttpStatus.OK);
+		return new ResponseEntity<>(friends, HttpStatus.OK);
 	}
 }

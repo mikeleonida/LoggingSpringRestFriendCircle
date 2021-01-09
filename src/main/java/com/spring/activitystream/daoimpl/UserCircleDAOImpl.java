@@ -1,6 +1,7 @@
 package com.spring.activitystream.daoimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -63,14 +64,14 @@ public class UserCircleDAOImpl implements UserCircleDAO {
 	}
 
 	@Override
-	public FriendCircle getFriendCircle(int userId) {
+	public List<FriendCircle> getFriendCircle(int userId) {
 		Session session = sessionFactory.openSession();
 		List<UserCircle> ucList = session
 				.createQuery("from UserCircle uc where userId=" + userId).list();
 		if (ucList.isEmpty()) {
 			return null;
 		}
-		return ((UserCircle) ucList.get(0)).getFriendCircle();
+		return ucList.stream().map(uc -> uc.getFriendCircle()).collect(Collectors.toList());
 	}
 
 }

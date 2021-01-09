@@ -1,5 +1,7 @@
 package com.spring.activitystream.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ public class UserCircleServiceImpl implements UserCircleService {
 	}
 
 	@Override
-	public FriendCircle getFriendCircle(int userId) {
+	public List<FriendCircle> getFriendCircle(int userId) {
 		return userCircleDAO.getFriendCircle(userId);
 	}
 

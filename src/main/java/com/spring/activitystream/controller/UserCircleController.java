@@ -1,5 +1,7 @@
 package com.spring.activitystream.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class UserCircleController {
 	@Autowired
 	private UserCircleService userCircleService;
 	
-	@RequestMapping(value = "/addfriend", method = RequestMethod.POST)
+	@RequestMapping(value = "/addfriend", method = RequestMethod.PUT)
 	public ResponseEntity addFriendToCircle(@RequestParam int userId, @RequestParam int friendCircleId) {
 		if(userCircleService.addFriend(userId, friendCircleId)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
@@ -29,7 +31,7 @@ public class UserCircleController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(value = "/removefriend", method = RequestMethod.POST)
+	@RequestMapping(value = "/removefriend", method = RequestMethod.DELETE)
 	public ResponseEntity removeFriendFromCircle(@RequestParam int userId, @RequestParam int friendCircleId) {
 		if(userCircleService.removeFriend(userId, friendCircleId)) {
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -38,8 +40,8 @@ public class UserCircleController {
 	}
 	
 	@RequestMapping("/friendcircle/{no}")
-	public ResponseEntity<FriendCircle> getCircleByUserId(@PathVariable ("no") int userId) {
-		FriendCircle fc = userCircleService.getFriendCircle(userId);
+	public ResponseEntity<List<FriendCircle>> getCircleByUserId(@PathVariable ("no") int userId) {
+		List<FriendCircle> fc = userCircleService.getFriendCircle(userId);
 		if (fc != null) {
 			return new ResponseEntity<>(fc, HttpStatus.OK);
 		}

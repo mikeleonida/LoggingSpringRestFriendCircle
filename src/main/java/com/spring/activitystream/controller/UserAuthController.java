@@ -23,17 +23,17 @@ public class UserAuthController {
 	public ResponseEntity loginUser(@RequestParam ("username") String username,
 			@RequestParam ("password") String password) {
 		if(userService.login(username, password)) {
-			return new ResponseEntity(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public ResponseEntity logoutUser(@RequestParam ("username") String username) {
 		if(userService.logout(username)) {
-			return new ResponseEntity(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}
 	
 }

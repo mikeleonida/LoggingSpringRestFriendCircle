@@ -2,6 +2,7 @@ package com.spring.activitystream.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +16,12 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 
+	@Column(nullable=false)
 	private String username;
+	
+	@Column(nullable=false)
 	private String password;
+	
 	private String city;
 	
 	public User() {

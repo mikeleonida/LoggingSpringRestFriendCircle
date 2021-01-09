@@ -1,6 +1,7 @@
 package com.spring.activitystream.daoimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.activitystream.dao.FriendCircleDAO;
 import com.spring.activitystream.model.FriendCircle;
 import com.spring.activitystream.model.User;
+import com.spring.activitystream.model.UserCircle;
 
 @Repository
 public class FriendCircleDAOImpl implements FriendCircleDAO {
@@ -29,12 +31,12 @@ public class FriendCircleDAOImpl implements FriendCircleDAO {
 	@Override
 	public List<User> getAllFriends(FriendCircle fc) {
 		Session session = sessionFactory.openSession();
-		List<FriendCircle> fcList = session
-				.createQuery("from FriendCircle f where id=" + fc.getFriendCircleId()).list();
-		if (fcList.isEmpty()) {
+		List<UserCircle> ucList = session
+				.createQuery("from UserCircle u where friendCircleId=" + fc.getFriendCircleId()).list();
+		if (ucList.isEmpty()) {
 			return null;
 		}
-		return ((FriendCircle) fcList.get(0)).getFriends();
+		return ucList.stream().map(uc -> uc.getUser()).collect(Collectors.toList()); 
 	}
 
 	@Override
