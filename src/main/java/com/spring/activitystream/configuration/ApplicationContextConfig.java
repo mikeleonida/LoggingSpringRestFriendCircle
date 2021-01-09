@@ -15,12 +15,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
- 
+
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.spring.activitystream" })
 @PropertySource(value = { "classpath:application.properties" })
-public class HibernateConfiguration {
+public class ApplicationContextConfig {
 	@Autowired
 	private Environment environment;
 
