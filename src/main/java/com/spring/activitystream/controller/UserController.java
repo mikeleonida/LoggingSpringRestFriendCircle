@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.activitystream.log.LogFile;
 import com.spring.activitystream.model.User;
 import com.spring.activitystream.service.UserService;
 
@@ -22,7 +23,9 @@ public class UserController {
 	
 	@RequestMapping("/")
 	public ResponseEntity welcome() {
+		//LogFile.log("Hello world");
 		return new ResponseEntity<>("Hello from Spring Rest Friend Circle", HttpStatus.OK);
+		
 	}
 	
 	@RequestMapping(value = "/adduser", method = RequestMethod.PUT)

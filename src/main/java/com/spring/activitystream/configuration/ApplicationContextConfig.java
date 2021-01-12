@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.spring.activitystream.controller.UserController;
 
 @Configuration
 @EnableTransactionManagement
@@ -51,7 +55,7 @@ public class ApplicationContextConfig {
 		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		return properties;
 	}
-
+	
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory s) {
@@ -59,4 +63,11 @@ public class ApplicationContextConfig {
 		txManager.setSessionFactory(s);
 		return txManager;
 	}
+	
+//	@Bean
+//	public UserController userController() {
+//		ConfigurableApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
+//		UserController uc = appContext.getBean(UserController.class);
+//		return uc;
+//	}
 }

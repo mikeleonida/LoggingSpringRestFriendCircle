@@ -15,6 +15,6 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { SpringRestConfiguration.class };
+		return new Class[] { SpringRestConfiguration.class, AppConfig.class };
 	}
 }
