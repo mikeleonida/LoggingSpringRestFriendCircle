@@ -13,11 +13,11 @@ public class LogFile {
 		File file = new File(fileName);
 		FileWriter fr = null;
 		try {
-			fr = new FileWriter(file);
+			fr = new FileWriter(file, true);
 			
 			Date date = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
-			fr.write(message + " at " + formatter.format(date));
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy h:mmaa");
+			fr.append(message + " at " + formatter.format(date));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		} finally {

@@ -13,22 +13,18 @@ import com.spring.activitystream.log.LogFile;
 @Aspect
 @Component
 public class BeforeAdviceExecutionPointcut {
-//	@Before("execution(* com.spring.activitystream.controller.UserController.*(...))")
 	@Before("execution(* com.spring.activitystream.controller.UserController.*())")
 	public void beforeUserControllerNoArgs(JoinPoint jp) {
-//		Date date = new Date();
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-//		System.out.println(formatter.format(date));
-		LogFile.log("\nINFO: User controller method called");
+		LogFile.log("\nINFO: UserController method no args called");
 	}
 	
 	@Before("execution(* com.spring.activitystream.controller.UserController.*(*))")
 	public void beforeUserControllerOneArg(JoinPoint jp) {
-		LogFile.log("\nINFO: User controller method one arg called");
+		LogFile.log("\nINFO: UserController method one arg called");
 	}
 	
 	@Before("execution(* com.spring.activitystream.controller.UserController.*(*, *))")
 	public void beforeUserControllerTwoArgs(JoinPoint jp) {
-		LogFile.log("\nINFO: User controller method two args called");
+		LogFile.log("\nINFO: UserController updateUser method called");
 	}
 }
